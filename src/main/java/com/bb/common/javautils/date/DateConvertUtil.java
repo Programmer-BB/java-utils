@@ -15,22 +15,26 @@ import java.util.Date;
 public class DateConvertUtil {
 
     /**
-     * @param date
-     * @return
+     * Date转换为LocalDate
+     *
+     * @param date Date对象
+     * @return LocalDate对象
      */
-    public static LocalDate convertToLocalDate(Date date) {
+    public static LocalDate dateToLocalDate(Date date) {
         Calendar calendar = Calendar.getInstance();
         calendar.setTime(date);
         return LocalDate.of(calendar.get(Calendar.YEAR), calendar.get(Calendar.MONTH) + 1, calendar.get(Calendar.DATE));
     }
 
     /**
-     * @param localDate
-     * @return
+     * LocalDate转换为Date
+     *
+     * @param localDate LocalDate对象
+     * @return Date对象
      */
-    public static Date convertToDate(LocalDate localDate) {
+    public static Date localDateToDate(LocalDate localDate) {
         Calendar calendar = Calendar.getInstance();
-        calendar.set(localDate.getYear(), localDate.getMonth().getValue(), localDate.getDayOfMonth());
+        calendar.set(localDate.getYear(), localDate.getMonthValue() - 1, localDate.getDayOfMonth());
         return calendar.getTime();
     }
 }
